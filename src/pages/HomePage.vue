@@ -1,13 +1,14 @@
 <template>
   <div class="m-home">
     <div class="row justify-content-center pt-2">
-      <h1>Crawl ACL Auhtors with Accepted Papers</h1>
+      <h1>Crawl ACL Authors with Accepted Papers</h1>
     </div>
     <div class="row pt-4">
       <div class="col">
         <div class="text-center">
-          <button class="btn btn-primary" @click="crawlAllAuhtors()">Crawl All Authors</button>
-          <button class="btn btn-primary"  @click="crawlLastAuhtors()">Crawl Last Authors</button>
+          <button class="btn btn-primary mt-2" @click="crawlAllAuthors()">Crawl All Authors</button>
+          <button class="btn btn-primary mt-2"  @click="crawlAllLastAuthors()">Crawl Last Authors</button>
+          <button class="btn btn-primary mt-2"  @click="crawlAllLastUniqueAuthors()">Crawl Last Unique Authors</button>
         </div>
         <div class="progress mt-2" v-if="isCrawling">
             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemax="100" style="width: 100%"></div>
@@ -46,13 +47,17 @@ export default {
     }
   },
   methods: {
-    crawlAllAuhtors () {
+    crawlAllAuthors () {
       this.isCrawling = true
       this.$store.dispatch('author/crawlAllAuthors')
     },
-    crawlLastAuhtors () {
+    crawlAllLastAuthors () {
       this.isCrawling = true
       this.$store.dispatch('author/crawlAllLastAuthors')
+    },
+    crawlAllLastUniqueAuthors () {
+      this.isCrawling = true
+      this.$store.dispatch('author/crawlAllLastUniqueAuthors')
     },
     shrinkTable () {
       this.table = $('#table-author').DataTable({

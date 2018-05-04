@@ -10,14 +10,17 @@ class ServerService {
     }]
     this.server = this.servers[0]
   }
-  getCrawlingAllAuthorsEndpoint () {
+  getAuthorsEndpoint () {
     return this.getEndpoint() + '/api/acl/authors/accepted'
   }
   getEndpoint () {
     return this.httpSchema + this.server.ip + this.port
   }
-  getCrawlingAllLastAuthorsEndpoint () {
+  getLastAuthorsEndpoint () {
     return this.getEndpoint() + '/api/acl/authors/accepted/last'
+  }
+  getLastUniqueAuthorsEndpoint () {
+    return this.getEndpoint() + '/api/acl/authors/accepted/last/unique'
   }
 }
 

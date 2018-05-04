@@ -13,7 +13,7 @@ export default {
   },
   mutations: {
     crawlAllAuthors (state) {
-      let url = ServerService.getCrawlingAllAuthorsEndpoint()
+      let url = ServerService.getAuthorsEndpoint()
       axios.get(url)
         .then(function (response) {
           state.authors = response.data
@@ -23,7 +23,17 @@ export default {
         })
     },
     crawlAllLastAuthors (state) {
-      let url = ServerService.getCrawlingAllLastAuthorsEndpoint()
+      let url = ServerService.getLastAuthorsEndpoint()
+      axios.get(url)
+        .then(function (response) {
+          state.authors = response.data
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
+    },
+    crawlAllLastUniqueAuthors (state) {
+      let url = ServerService.getLastUniqueAuthorsEndpoint()
       axios.get(url)
         .then(function (response) {
           state.authors = response.data
@@ -39,6 +49,9 @@ export default {
     },
     crawlAllLastAuthors (context) {
       context.commit('crawlAllLastAuthors')
+    },
+    crawlAllLastUniqueAuthors (context) {
+      context.commit('crawlAllLastUniqueAuthors')
     }
   }
 }
