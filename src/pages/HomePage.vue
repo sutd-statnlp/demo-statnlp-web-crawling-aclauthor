@@ -8,6 +8,7 @@
         <div class="text-center">
           <button class="btn btn-primary mt-2" @click="crawlAllAuthors()">Crawl All Authors</button>
           <button class="btn btn-primary mt-2"  @click="crawlAllLastAuthors()">Crawl Last Authors</button>
+          <button class="btn btn-primary mt-2"  @click="crawlAllUniqueAuthors()">Crawl Unique Authors</button>
           <button class="btn btn-primary mt-2"  @click="crawlAllLastUniqueAuthors()">Crawl Last Unique Authors</button>
         </div>
         <div class="progress mt-2" v-if="isCrawling">
@@ -43,7 +44,8 @@ export default {
   data () {
     return {
       isCrawling: false,
-      table: null
+      table: null,
+      title: 'All Authors'
     }
   },
   methods: {
@@ -54,16 +56,42 @@ export default {
     crawlAllLastAuthors () {
       this.isCrawling = true
       this.$store.dispatch('author/crawlAllLastAuthors')
+      this.title = 'All Last Authors'
+    },
+    crawlAllUniqueAuthors () {
+      this.isCrawling = true
+      this.$store.dispatch('author/crawlAllUniqueAuthors')
+      this.title = 'All Unique Authors'
     },
     crawlAllLastUniqueAuthors () {
       this.isCrawling = true
       this.$store.dispatch('author/crawlAllLastUniqueAuthors')
+      this.title = 'All Last Unique Authors'
     },
     shrinkTable () {
       this.table = $('#table-author').DataTable({
         dom: 'Bfrtip',
         buttons: [
-          'copy', 'csv', 'excel', 'pdf', 'print'
+          {
+            extend: 'copy',
+            title: this.title
+          },
+          {
+            extend: 'excel',
+            title: this.title
+          },
+          {
+            extend: 'pdf',
+            title: this.title
+          },
+          {
+            extend: 'csv',
+            title: this.title
+          },
+          {
+            extend: 'print',
+            title: this.title
+          }
         ],
         destroy: true
       })

@@ -19,6 +19,9 @@ class ServerService {
   getLastAuthorsEndpoint () {
     return this.getEndpoint() + '/api/acl/authors/accepted/last'
   }
+  getUniqueAuthorsEndpoint () {
+    return this.getEndpoint() + '/api/acl/authors/accepted/unique'
+  }
   getLastUniqueAuthorsEndpoint () {
     return this.getEndpoint() + '/api/acl/authors/accepted/last/unique'
   }

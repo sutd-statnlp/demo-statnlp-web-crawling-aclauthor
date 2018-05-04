@@ -32,6 +32,16 @@ export default {
           console.log(error)
         })
     },
+    crawlAllUniqueAuthors (state) {
+      let url = ServerService.getUniqueAuthorsEndpoint()
+      axios.get(url)
+        .then(function (response) {
+          state.authors = response.data
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
+    },
     crawlAllLastUniqueAuthors (state) {
       let url = ServerService.getLastUniqueAuthorsEndpoint()
       axios.get(url)
@@ -49,6 +59,9 @@ export default {
     },
     crawlAllLastAuthors (context) {
       context.commit('crawlAllLastAuthors')
+    },
+    crawlAllUniqueAuthors (context) {
+      context.commit('crawlAllUniqueAuthors')
     },
     crawlAllLastUniqueAuthors (context) {
       context.commit('crawlAllLastUniqueAuthors')
