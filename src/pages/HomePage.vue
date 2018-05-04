@@ -18,7 +18,6 @@
       <div class="col-md-8">
         <div class="table-responsive">
               <table id="table-author" class="table table-striped display">
-                <caption>ACL Authors</caption>
                 <thead>
                   <tr>
                     <th scope="col">#</th>
@@ -52,6 +51,7 @@ export default {
     crawlAllAuthors () {
       this.isCrawling = true
       this.$store.dispatch('author/crawlAllAuthors')
+      this.title = 'All Authors'
     },
     crawlAllLastAuthors () {
       this.isCrawling = true
